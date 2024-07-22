@@ -1,0 +1,49 @@
+﻿@using MvcStok.Models2
+@model List<Tblmusteriler2>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tableMusteri">
+    <thead>
+        <tr>
+            <th>MÜŞTERİ ID</th>
+            <th>MÜŞTERİ ADI</th>
+            <th>MÜŞTERİ SOYADI</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mstri in Model)
+        {
+            <tr>
+                <td>@mstri.Musteriid</td>
+                <td>@mstri.Musteriad</td>
+                <td>@mstri.Musterisoyad</td>
+                <td><a href="/Musteri/Sil/@mstri.Musteriid" class="btn btn-danger" onclick="return confirmDelete(this.href);">Sil</a></td>
+                <td><a href="/Musteri/MusteriGetir/@mstri.Musteriid" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Musteri/YeniMusteri" class="btn btn-primary">Yeni Müşteri Ekle</a>
+
+@section Scripts {
+    <script src="~/js/DatatableHelper.js"></script>
+    <script>
+        $(document).ready(function () {
+            HelperTable("#tableMusteri")
+        });
+
+        function confirmDelete(url) {
+            if (confirm("Gerçekten silmek istiyor musunuz?")) {
+                window.location.href = url;
+            }
+            return false; // Hayır'a basılırsa hiçbir şey yapmaz.
+        }
+    </script>
+}

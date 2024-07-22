@@ -1,0 +1,41 @@
+﻿@model MvcStok.Models2.Tblmusteriler2Dto
+@{
+    ViewData["Title"] = "YeniMusteri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>Müşteri Adı</label>
+        <input type="text" asp-for="Musteriad" maxlength="100" class="form-control" id="customername" placeholder="Lütfen müşteri adını giriniz..." />
+        <span asp-validation-for="Musteriad" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Müşteri Soyadı</label>
+        <input type="text" class="form-control" name="Musterisoyad" id="customersurname" placeholder="Lütfen müşteri soyadını giriniz" />
+    </div>
+    <div style="margin-top:15px">
+        <button type="button" class="btn btn-info" id="btn1">Müşteri Ekle</button>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('#btn1').click(function () {
+            var customerName = $('#customername').val().trim();
+            var customerSurname = $('#customersurname').val().trim(); // Note the change in ID
+
+            if (customerName === "") {
+                alert('Lütfen müşteri adı girin.');
+                return false; // Prevent form submission
+            }
+
+            if (customerSurname === "") {
+                alert('Lütfen müşteri soyadı girin.');
+                return false; // Prevent form submission
+            }
+
+            alert('Müşteri ekleme işlemi tamamlandı...');
+            $('form').submit(); // Submit the form if all validations pass
+        });
+    });
+</script>

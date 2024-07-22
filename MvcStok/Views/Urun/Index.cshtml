@@ -1,0 +1,53 @@
+﻿@using MvcStok.Models2
+@model List<TblurunlerDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+<table class=" table table-bordered" id="customerTable">
+    <thead>
+        <tr>
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN ADI</th>
+            <th>MARKA</th>
+            <th>KATEGORİ</th>
+            <th>FİYAT</th>
+            <th>STOK</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urn in Model)
+        {
+            <tr>
+                <th>@urn.Urunid</th>
+                <td>@urn.Urunad</td>
+                <td>@urn.Marka</td>
+                <td>@urn.Kategoriad</td>
+                <td>@urn.Fiyat</td>
+                <td>@urn.Stok</td>
+                <td><a href="/Urun/Sil/@urn.Urunid" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Urun/UrunGetir/@urn.Urunid" class="btn btn-success">Güncelle</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+<a href="/Urun/YeniUrun/" class=" btn btn-primary">Yeni Ürün Ekle</a>
+
+@section Scripts{
+    <script src="~/js/DatatableHelper.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            HelperTable("#customerTable")
+        });
+    </script>
+}
+

@@ -1,0 +1,42 @@
+﻿@using MvcStok.Models2
+@model List<Tblkategoriler>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tableCategory">
+    <thead>
+        <tr>
+            <th>Kategori ID</th>
+            <th>Kategori Adı</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <th>@ktgr.Kategoriid</th>
+                <td>@ktgr.Kategoriad</td>
+                <td><a href="/Kategori/Sil/@ktgr.Kategoriid" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Kategori/KategoriGetir/@ktgr.Kategoriid" class="btn btn-success">Güncelle</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<a href="/Kategori/YeniKategori/" class=" btn btn-primary">Yeni Kategori Ekle</a>
+
+
+@section Scripts {
+    <script src="~/js/DatatableHelper.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            HelperTable("#tableCategory")
+        });
+    </script>
+}
+
